@@ -1,0 +1,60 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/*
+    Created on : 26 nov. 2018, 14:24:32
+    Author     : lamber187u
+*/
+
+body{
+
+  background-size: auto;
+}
+
+div.page table{
+    color: indianred;
+
+    width: 100%;
+    height: 100%;
+
+}
+
+.titre td, .menu td {
+    border: 3px solid;
+    border-radius: 50px;
+    text-align: center;
+    border-color: olive;
+    height:10%;
+
+}
+
+.sousmenu td{
+    border-top: 3px solid;
+    border-radius: 50px;
+    border-color: olive;
+    text-align: left;
+
+}
+
+.menu td{
+    width: 20%
+}
+.texte td{
+    border:none;
+    align-content: center;
+}
+
+.chemin td {
+  text-align: center; !important
+}
+#recherche, #connexion, #mesRecettes{
+    background-color: lightgrey;
+
+}
+
+a, a:visited, a:hover, a:active{
+   color:indianred;
+   text-decoration: none;
+}
