@@ -83,7 +83,8 @@
       return $res;
     }
 
-    
+
+
     //=====MAIN=====//
 
 
@@ -124,11 +125,28 @@
     }
 
     if(isset($_GET['like']) && $_GET['like'] !="" ){
-      echo $_GET['like'];
-
-      //ecirre dans un fichier de l'utilisateur ses favoris
+      $data = $_GET['like']."*";
+      file_put_contents ("panier.txt" , $data , FILE_APPEND | LOCK_EX);
     }
 
+    if(isset($_GET['data_like']) && $_GET['data_like'] !=""){
+      $file = file_get_contents('panier.txt');
+      $string = "";
+      $arr = explode("*", $file);
+      //echo "==== key : " . $_GET['data_like'] . " ====<br>";
+      foreach($arr as $key=>$value){
+
+        //echo "key " . $key . "<br> value " . $value . "<br>";
+        if($value !=""){
+          $data = explode("|", $value);
+          //echo "<br>====>". $data[0] . "<br>====>". $data[1]. "<br>===<br>";
+          $string = $string . $data[0] . "*";
+          //string += hello ne fonctionne pas
+        }
+
+      }
+      echo $string;
+    }
 
 
 ?>
