@@ -58,3 +58,13 @@ a, a:visited, a:hover, a:active{
    color:indianred;
    text-decoration: none;
 }
+
+.b_like input {
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.b_like:hover input {
+  background-color: #4CAF50; /* Green */
+  color: white;
+}

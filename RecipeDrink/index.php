@@ -1,9 +1,23 @@
 <?php
+    session_start();
     /*$name=$_GET["nom"];
     $MotDePasse=$_GET["mdp"];
     if(isset($name)){
         //echo $name;
     }*/
+    function getKey($len = 64){
+      $res = "";
+      $now = explode(' ', microtime())[1] ;
+      $res = hash('ripemd160', $now, false);
+      return $res;
+    }
+
+    if(!isset($_SESSION['id']) || strlen($_SESSION['id'])!=40 ){
+      $_SESSION['id'] = getKey();
+    }
+
+
+    echo "<input id=\"sessionID\" type=\"hidden\" value=\"".$_SESSION['id']."\">";
 ?>
 <html>
     <head>
@@ -24,6 +38,7 @@
                   $(document).ready(function()
                   {
                      genererCategorie("Aliment", indice);
+
                   });
 
 
@@ -65,12 +80,16 @@
                           for(var i = 0; i< newArray.length-1; i++){
                               val++;
                               var tmp = newArray[i];
+                              var tmp_ = newArray[i].replace(/ /g,"_");
 
 
                               str+="<div id=\""+tmp+"\">"
                               str+=tmp +" ";
 
-                              str+="<a href=\"./like.php\"><img src=\"./Photos/icon-like.png \" width=\"20\" height=\"20\"></a><br><br>";
+                              //str+="<a onclick=\"like(\"ici\");\"><img src=\"./Photos/icon-like.png \" width=\"20\" height=\"20\"></a><br><br>";
+                              str+= '<input id=\"b_like\" type="button" onClick="like(\'' + tmp + '\')" />'
+                              /*
+                              Fait des requetes pour pouvoir coller les images à coté des recettes
                               $.get("./test?image="+newArray[i], function(data, status){
                                   if(data!=0){
                                     var arr = data.split("|");
@@ -79,7 +98,7 @@
                                   }
 
                               });
-
+                              */
                               str+="</div>"
                               if(i%10 == 0){
                                 str+="</td><td>"
@@ -169,6 +188,18 @@
                   genererCategorie(tmp, ind);
               }
 
+              function like(nom){
+                var data = nom;
+                data += $_SESSION
+                alert("Vous avez liké " + nom);
+                $.get("./test?like="+nom, function(data, status){
+
+                      alert("Ajout avec succès");
+
+
+                });
+              }
+
               </script>
     </head>
     <body>
@@ -188,7 +219,7 @@
                         <table class="texte">
                             <tr>
                                 <td>
-
+                                  <!--<a onclick="like(1);">laa</a>-->
                                   <!--- Bloc sur lequel JS va travailler----------->
                                   <table border="1" >
 

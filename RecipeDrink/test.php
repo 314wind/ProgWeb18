@@ -82,6 +82,8 @@
       }
       return $res;
     }
+
+    
     //=====MAIN=====//
 
 
@@ -120,5 +122,13 @@
         $string = imageExists($_GET['image']);
         echo $string;
     }
+
+    if(isset($_GET['like']) && $_GET['like'] !="" ){
+      echo $_GET['like'];
+
+      //ecirre dans un fichier de l'utilisateur ses favoris
+    }
+
+
 
 ?>
